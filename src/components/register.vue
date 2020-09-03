@@ -8,10 +8,10 @@
             </div>
         <form action="" @submit.prevent="register">
             <div>
-                <input type="email" placeholder="Title" v-model="user.email">
+                <input type="email" placeholder="Title" v-model="user.email" required>
             </div>
             <div>
-                <input type="password" name="" id="" v-model="user.password">
+                <input type="password" name="" id="" v-model="user.password" required>
             </div>
             <div>
                 <button type="submit">Register</button>

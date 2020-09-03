@@ -1,29 +1,36 @@
 <template>
     <header>
-        <ul v-if="app.loggedin">
-            <li>
-                <router-link to="/"> myDiary|</router-link>
-            </li>
-             <li>
-               <router-link to="/write"> Record Event|</router-link>
-            </li>
-            <li>
-                <button @click="signout">
-                    Log out
-                </button>
-            
-            </li>
+       
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        </ul>
-        <ul v-else>
-            <li>
-               <router-link to="/login"> Login| </router-link>
-            </li>
-             <li>
-               <router-link to="/register"> Register| </router-link>
-            </li>
-        
-        </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto" v-if="app.loggedin">
+                    <li class="nav-item active">
+                        <router-link to="/"> List <span class="sr-only">(current)</span></router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/write" class="nav-link"> Record Event</router-link>
+                    </li>
+                     <li class="nav-item">
+                        <button type="button" class="btn btn-light">Log Out</button>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto" v-else>
+                    <li class="nav-item active">
+                        <router-link to="/login" class="nav-link"> login <span class="sr-only">(current)</span></router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/register" class="nav-link"> Sign up</router-link>
+                    </li>
+                   
+                </ul>
+               
+            </div>
+        </nav>
     </header>
 </template>
 <script>
@@ -48,11 +55,7 @@ export default {
 }
 </script>
 <style scoped>
-    header{
-        width: 100%;
-        height: 40px;
-        background-color: blueviolet;
-    }
+ 
     ul{
         margin: 0px;
     }
@@ -63,6 +66,10 @@ export default {
         padding: 0px;
         vertical-align: middle;
         -ms-flex-item-align: center;
+        
+    }
+    .bg-dark{
+        background-color: rgba(220, 238, 220, 0.333);
     }
 </style>
 

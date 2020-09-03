@@ -6,10 +6,16 @@ import router from './router'
 import axios from 'axios'
 import firebase from 'firebase/app'
 import vueResource from 'vue-resource'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(vueResource)
 Vue.prototype.$axios= axios
 Vue.config.productionTip = false
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 const firebaseConfig = {
   apiKey: "AIzaSyCfRrfg3GGaRrvBu3RHidK-X099zAcmDK0",
@@ -30,9 +36,15 @@ firebase.initializeApp(firebaseConfig);
 /* eslint-disable */ 
 // eslint-disable-next-line
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+let app;
+firebase.auth().onAuthStateChanged(user=>{
+  if (!app) {
+    app= new Vue({
+      el: '#app',
+      router,
+      components: { App },
+      template: '<App/>'
+    })
+  }
+ 
 })

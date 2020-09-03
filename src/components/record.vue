@@ -3,17 +3,17 @@
     <div class="form">
         <form action=" " @submit.prevent="post">
             <div>
-                <input type="text" placeholder="Title" v-model="diary.title">
+                <input type="text" placeholder="Title" v-model="diary.title" required>
             </div>
             <div>
-                <textarea name="body" id="" cols="30" rows="10" placeholder="write here" v-model="diary.body"></textarea>
+                <textarea name="body" id="" cols="30" rows="10" placeholder="write here" v-model="diary.body" required></textarea>
             </div>
             <div>
                 <button type="submit">submit</button>
             </div>
         </form>
     </div>
-    {{diary.user_id}}
+   
 </div>
     
 </template>
@@ -21,9 +21,11 @@
 <script>
 /* eslint-disable */
 import axios from 'axios'
+import * as firebase from 'firebase/app';
+import 'firebase/firestore'
 export default {
     props:['app'],
-       created(){
+    created(){
         
        let m =new Date().toLocaleString()
        this.diary.date=m
@@ -45,9 +47,14 @@ export default {
     },
     methods:{
         post: function(){
-            this.$http.post('https://mydiary-83817.firebaseio.com/diary.json', this.diary).then(res=>{
-                console.log(res)
+            firebase.firestore().collection('diary').add({
+                title: this.diary.title,
+                body: this.diary.body,
+                data: new Date().toLocaleString(),
+                user_id: this.app.user.uid
+
             })
+        
         }
     }
  

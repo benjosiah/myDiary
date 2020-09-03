@@ -1,23 +1,32 @@
 <template>
-<div class="wrap">
-    <div>
+<div class="container">
+    <div class="row">
          <div class="form">
             <div class="error">
                 {{error}}
             </div>
-        <form action="" @submit.prevent="login">
-            <h2>Login</h2>
-            <div>
-                <input type="email" placeholder="email" v-model="user.email">
-            </div>
-            <div>
-                <input type="password" placeholder="password" v-model="user.password">
-            </div>
-            <div>
-                <button type="submit">Login</button>
-            </div>
-          
-        </form>
+            <form  @submit.prevent="login">
+                <div class="form-group col-6 pop"  >
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      placeholder="email" v-model="user.email" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group form-group col-6 pop" >
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1"
+                     placeholder="password" v-model="user.password" required>
+                </div>
+                <div class="form-group form-check form-group col-6 pop"> 
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <div class="col-6 pop">
+                    <button type="submit" class="btn btn-primary ">Submit</button>
+                </div>
+                
+            </form>
+        
         
     </div>
     </div>
@@ -82,18 +91,11 @@ export default {
 
     }
     div{
-        margin: 20px;
+        margin: auto;
     }
-    input{
-        width: 50%;
-        height: 30px;
-        border-radius: 3px;
-        background-color: burlywood;
-    }
-    button{
-        width: 15%;
-        height: 30px;
-        background-color: rgb(190, 139, 17);
-    }
+  
+   .pop{
+       /* text-align: center; */
+   }
 
 </style>

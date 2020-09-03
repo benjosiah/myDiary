@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <app-header :app='this'/>
+    <app-header :app='this'></app-header>
     <router-view :app='this'/>
-    {{user}}
   </div>
+    
+  
 </template>
 
 <script>
@@ -24,13 +25,14 @@ export default {
        }else{
          this.loggedin=false
        }
+       console.log(process.env.VUE_APP_URL)
      })
 
      
   },
   data(){
     return{
-      loggedin:false,
+      loggedin:true,
       user:null
     }
   }
